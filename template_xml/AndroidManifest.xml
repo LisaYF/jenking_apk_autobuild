@@ -1,0 +1,109 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.qcast.coatapp"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <uses-permission android:name="android.permission.INJECT_EVENTS"/>
+    <uses-permission android:name="android.permission.INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.DELETE_PACKAGES" />
+    <uses-permission android:name="android.permission.REBOOT" />
+    <uses-permission android:name="android.permission.DEVICE_POWER" />
+    <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES"/>
+    
+    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="23" />
+
+    <application android:name="com.qcast.carrier.CoatApplication"
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:theme="@android:style/Theme.Black.NoTitleBar"
+        android:persistent="true"
+        android:sharedUserId="android.uid.system">
+        <activity android:name="com.qcast.coatapp.CoatActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- QCastCore process -->
+        <!-- For ReactActivity -->
+        <activity android:name="com.qcast.carrier.CoatActivityStub$P00$SingleTask00"
+            android:launchMode="singleTask"
+            android:process=":PluginP00"
+            android:hardwareAccelerated="true"
+            android:exported="false"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:allowTaskReparenting="true"
+            android:excludeFromRecents="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.morgoo.droidplugin.category.PROXY_STUB" />
+            </intent-filter>
+            <meta-data android:name="com.morgoo.droidplugin.ACTIVITY_STUB_INDEX" android:value="0" />
+        </activity>
+        <!-- For DevSettingsActivity -->
+        <activity android:name="com.qcast.carrier.CoatActivityStub$P00$Standard00"
+            android:launchMode="standard"
+            android:process=":PluginP00"
+            android:hardwareAccelerated="true"
+            android:exported="false"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:allowTaskReparenting="true"
+            android:excludeFromRecents="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.morgoo.droidplugin.category.PROXY_STUB" />
+            </intent-filter>
+            <meta-data android:name="com.morgoo.droidplugin.ACTIVITY_STUB_INDEX" android:value="0" />
+            <!--<meta-data android:name="com.morgoo.droidplugin.ACTIVITY_STUB_INDEX" android:value="1" />-->
+        </activity>
+
+        <activity android:name="com.qcast.carrier.CoatActivityStub$P01$SingleTask00"
+                  android:launchMode="singleTask"
+                  android:process=":PluginP01"
+                  android:hardwareAccelerated="true"
+                  android:exported="false"
+                  android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+                  android:allowTaskReparenting="true"
+                  android:excludeFromRecents="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.morgoo.droidplugin.category.PROXY_STUB" />
+            </intent-filter>
+            <meta-data android:name="com.morgoo.droidplugin.ACTIVITY_STUB_INDEX" android:value="0" />
+        </activity>
+        <!-- For DevSettingsActivity -->
+        <activity android:name="com.qcast.carrier.CoatActivityStub$P01$Standard00"
+                  android:launchMode="standard"
+                  android:process=":PluginP01"
+                  android:hardwareAccelerated="true"
+                  android:exported="false"
+                  android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+                  android:allowTaskReparenting="true"
+                  android:excludeFromRecents="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.morgoo.droidplugin.category.PROXY_STUB" />
+            </intent-filter>
+            <meta-data android:name="com.morgoo.droidplugin.ACTIVITY_STUB_INDEX" android:value="0" />
+            <!--<meta-data android:name="com.morgoo.droidplugin.ACTIVITY_STUB_INDEX" android:value="1" />-->
+        </activity>
+
+        <service android:name="org.chromium.service_server.CastLinkerServiceServer"
+                 android:process=":tvservice"
+                 android:exported="true">
+            <intent-filter>
+                <action android:name="qcast.service.Link_service" />
+            </intent-filter>
+        </service>
+
+        <meta-data android:name="QCodeContentId" android:value="CCFLauncher" />
+
+        <!-- UMENG meta -->
+        <meta-data android:name="UMENG_APPKEY" android:value="5508e5cdfd98c506b2001efc" />
+        <meta-data android:name="UMENG_CHANNEL" android:value="NewQcastTV" />
+    </application>
+
+</manifest>
